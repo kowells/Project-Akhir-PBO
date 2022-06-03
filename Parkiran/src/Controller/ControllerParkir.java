@@ -49,8 +49,7 @@ public class ControllerParkir {
                dataTerpilih = Integer.parseInt(data);
                namaParkirTerpilih = parkirView.tabel.getValueAt(baris, 0).toString();          
                parkirView.setPNomor(parkirView.tabel.getValueAt(baris, 0).toString());
-               /*parkirView.setJbarang(parkirView.tabel.getValueAt(baris, 1).toString());*/
-              parkirView.setJenis(parkirView.tabel.getValueAt(baris, 1).toString());
+               parkirView.setJenis(parkirView.tabel.getValueAt(baris, 1).toString());
                //cb.setSelectedItem(parkirView.tabel.getValueAt(baris, 1).toString());
                parkirView.setHParkir(parkirView.tabel.getValueAt(baris, 2).toString());
    }
@@ -63,9 +62,6 @@ public class ControllerParkir {
                 if(parkirView.getPlatNomor().isBlank()){ 
                     throw new IllegalArgumentException("Plat Nomor belum terisi");
                 }
-                /*if(parkirView.getJumlahBarang().isBlank()){
-                     throw new IllegalArgumentException("Jumlah Barang belum terisi");
-                }*/
                 if(parkirView.getJenis().isBlank()){
                      throw new IllegalArgumentException("Jenis Kendaraan belum terisi");
                      
@@ -83,6 +79,7 @@ public class ControllerParkir {
                 parkirView.tabel.setModel((new JTable(dataParkir, parkirView.namaKolom)).getModel());
                 parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
                 parkirView.setPNomor("");
+                parkirView.setJenis(null);
                 parkirView.setHParkir("");
             }catch(Exception error){
                 JOptionPane.showMessageDialog(null, error.getMessage());
@@ -175,7 +172,7 @@ public class ControllerParkir {
             public void actionPerformed(ActionEvent ae){
                 cb = (JComboBox)ae.getSource();
                 jenisKendaraan = (String)cb.getSelectedItem();
-                //updateLabel(petName);
+                
             }
        });      
 

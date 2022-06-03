@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ridwa/Downloads/Parkiran/src/Controller/ControllerParkir.java</file>
+            <file>file:/C:/Users/ridwa/Downloads/Parkiran/src/Model/ModelParkirImpls.java</file>
             <file>file:/C:/Users/ridwa/Downloads/Parkiran/src/Main/Main.java</file>
+            <file>file:/C:/Users/ridwa/Downloads/Parkiran/src/Controller/ControllerParkir.java</file>
             <file>file:/C:/Users/ridwa/Downloads/Parkiran/src/View/ViewParkir.java</file>
+            <file>file:/C:/Users/ridwa/Downloads/Parkiran/src/Model/ModelParkir.java</file>
         </group>
     </open-files>
 </project-private>

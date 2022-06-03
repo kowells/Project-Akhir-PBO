@@ -25,7 +25,8 @@ public class ViewParkir extends JFrame {
 
     private JTextField PNomor;
     private JTextField Jbarang;
-    private JTextField JenisKend;
+    String[] kendaraan = {"motor", "mobil","pesawat"};
+    public JComboBox JenisKend = new JComboBox(kendaraan);
     private JTextField HParkir;
     public JTable tabel;
 
@@ -49,6 +50,9 @@ public class ViewParkir extends JFrame {
     JScrollPane scrollPane;
     public Object namaKolom[] = {"Plat Nomor", "Jenis Kendaraan", "Harga Parkir",
             "Waktu Masuk", "Waktu Keluar", ""};
+    
+    
+ 
 
     public ViewParkir() throws IOException {
         dtm = new DefaultTableModel(namaKolom, 0);
@@ -118,19 +122,10 @@ public class ViewParkir extends JFrame {
         JenisKend.setBounds(970, 223, 143, 25);
         bg.add(JenisKend); */
        
-        String[] kendaraan = {"motor", "mobil","pesawat"};
-        JComboBox JenisKend = new JComboBox(kendaraan);
+       //combobox
         JenisKend.setBounds(970, 223, 143, 25);
         bg.add(JenisKend);
         
-        
-        /*JComboBox<String> JenisKend = new JComboBox<>();
-        JenisKend.setBounds(970, 223, 143, 25);
-            bg.add (JenisKend);
-            JenisKend.addItem(" ");
-            JenisKend.addItem("motor");
-            JenisKend.addItem("mobil");
-            JenisKend.addItem("pesawat"); */
 
         JLabel labelharga = new JLabel("Harga Parkir");
         labelharga.setForeground(Color.BLACK);
@@ -223,9 +218,9 @@ public class ViewParkir extends JFrame {
         return Jbarang.getText();
     }*/
 
-    public String getJenisKendaraan() {
-        return JenisKend.getText();
-    }
+//    public String getJenisKendaraan() {
+//        return JenisKend.getText();
+//    }
 
     public String getHargaParkir() {
         return HParkir.getText();
@@ -239,12 +234,21 @@ public class ViewParkir extends JFrame {
         this.Jbarang.setText(string);
     }*/
 
-    public void setjenisKen(String string) {
-        this.JenisKend.setText(string);
-    }
+//    public void setJenisKend(String string) {
+//        this.JenisKend.setText(string);
+//    }
 
     public void setHParkir(String string) {
         this.HParkir.setText(string);
     }
+
+    public String getJenis(){
+        return (String) JenisKend.getSelectedItem();
+    }
+    
+    public void setJenis(String string){
+        this.JenisKend.setSelectedItem(string);
+    }
+    
 
 }

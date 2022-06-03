@@ -106,6 +106,8 @@ public class ModelParkirImpls implements ModelParkir{
     @Override
     public void updateData(int id, String plat_nomor, String jenis, String harga){
         int jmlData=0;
+        String keluar = null;
+        
         Date dateNow = new Date();
          try {
            String query = "SELECT * FROM catatparkir WHERE id='" + id +"'"; 
@@ -113,15 +115,21 @@ public class ModelParkirImpls implements ModelParkir{
            
            while (resultSet.next()){ 
                 jmlData++;
+                keluar = resultSet.getString("keluar");
             }
            
              if (jmlData==1) {
-                query = "UPDATE catatparkir SET plat_nomor='" + plat_nomor + "', jenis='" + jenis +  "', harga='"+ harga +"', keluar='"+formatter.format(dateNow)+"' WHERE id='" + id+"'"; 
+                if(keluar == null){
+                query = "UPDATE catatparkir SET keluar='"+formatter.format(dateNow)+"' WHERE id='" + id+"'"; 
                 statement = (Statement) koneksi.createStatement();
                 statement.executeUpdate(query); 
                 System.out.println("Kendaraan Telah Keluar");
                 JOptionPane.showMessageDialog(null, "Kendaraan Telah Keluar");
-             }
+                }else {
+                    JOptionPane.showMessageDialog(null, "Kendaraan OUT");
+                }
+
+             } 
              else {
                  JOptionPane.showMessageDialog(null, "Data Tidak Ada");
              }

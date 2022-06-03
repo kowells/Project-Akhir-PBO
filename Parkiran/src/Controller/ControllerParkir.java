@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JComboBox;
 import Model.ModelParkirImpls;
 import View.ViewParkir;
 /**
@@ -21,6 +22,9 @@ public class ControllerParkir {
     ViewParkir parkirView;
     private Integer dataTerpilih;
     private String namaParkirTerpilih;
+    private JComboBox cb;
+    private String jenisKendaraan;
+    private String keluar;
     
     public ControllerParkir(ModelParkirImpls modelParkir, ViewParkir parkirView) {
         this.modelParkir = modelParkir;
@@ -46,7 +50,8 @@ public class ControllerParkir {
                namaParkirTerpilih = parkirView.tabel.getValueAt(baris, 0).toString();          
                parkirView.setPNomor(parkirView.tabel.getValueAt(baris, 0).toString());
                /*parkirView.setJbarang(parkirView.tabel.getValueAt(baris, 1).toString());*/
-               parkirView.setjenisKen(parkirView.tabel.getValueAt(baris, 1).toString());
+              parkirView.setJenis(parkirView.tabel.getValueAt(baris, 1).toString());
+               //cb.setSelectedItem(parkirView.tabel.getValueAt(baris, 1).toString());
                parkirView.setHParkir(parkirView.tabel.getValueAt(baris, 2).toString());
    }
         });
@@ -61,9 +66,9 @@ public class ControllerParkir {
                 /*if(parkirView.getJumlahBarang().isBlank()){
                      throw new IllegalArgumentException("Jumlah Barang belum terisi");
                 }*/
-                if(parkirView.getJenisKendaraan().isBlank()){
-                    
+                if(parkirView.getJenis().isBlank()){
                      throw new IllegalArgumentException("Jenis Kendaraan belum terisi");
+                     
                 }
                 if(parkirView.getHargaParkir().isBlank()){
                      throw new IllegalArgumentException("Harga Parkir belum terisi");
@@ -72,15 +77,15 @@ public class ControllerParkir {
                 
                 String plat = parkirView.getPlatNomor();
                 /*int jumlah = Integer.parseInt(parkirView.getJumlahBarang());*/
-                String jenis = parkirView.getJenisKendaraan();
+                String jenis = parkirView.getJenis();
                 String harga = parkirView.getHargaParkir();
-                modelParkir.insertData(plat, jenis, harga);
+                modelParkir.insertData(plat, jenisKendaraan , harga);
                 String dataParkir[][] = modelParkir.readData();
                 parkirView.tabel.setModel((new JTable(dataParkir, parkirView.namaKolom)).getModel());
                 parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
                 parkirView.setPNomor("");
                 /*parkirView.setJbarang("");*/
-                parkirView.setjenisKen("");
+                //parkirView.setJenisKend("");
                 parkirView.setHParkir("");
             }catch(Exception error){
                 JOptionPane.showMessageDialog(null, error.getMessage());
@@ -104,26 +109,29 @@ public class ControllerParkir {
                 /*if(parkirView.getJumlahBarang().isBlank()){
                      throw new IllegalArgumentException("Jumlah Barang belum terisi");
                 }*/
-                if(parkirView.getJenisKendaraan().isBlank()){
+                if(parkirView.getJenis().isBlank()){
                     
                      throw new IllegalArgumentException("Jenis Kendaraan belum terisi");
                 }
                 if(parkirView.getHargaParkir().isBlank()){
                      throw new IllegalArgumentException("Harga Parkir belum terisi");
                 }
-                String plat = parkirView.getPlatNomor();
-                /*int jumlah = Integer.parseInt(parkirView.getJumlahBarang());*/
-                String jenis = parkirView.getJenisKendaraan();
-                String harga = parkirView.getHargaParkir();
-                modelParkir.updateData(id, plat, jenis, harga);
-                String dataParkir[][] = modelParkir.readData();
-                parkirView.tabel.setModel((new JTable(dataParkir, parkirView.namaKolom)).getModel());
-                parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
-                dataTerpilih = null;
-                parkirView.setPNomor("");
-                /*parkirView.setJbarang("");*/
-                parkirView.setjenisKen("");
-                parkirView.setHParkir("");
+                
+                    String plat = parkirView.getPlatNomor();
+                    /*int jumlah = Integer.parseInt(parkirView.getJumlahBarang());*/
+                    //String jenis = parkirView.getJenisKendaraan();
+                    String harga = parkirView.getHargaParkir();
+                    modelParkir.updateData(id, plat, jenisKendaraan , harga);
+                    String dataParkir[][] = modelParkir.readData();
+                    parkirView.tabel.setModel((new JTable(dataParkir, parkirView.namaKolom)).getModel());
+                    parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
+                    dataTerpilih = null;
+                    parkirView.setPNomor("");
+                    /*parkirView.setJbarang("");*/
+                    //parkirView.setJenisKend("");
+                    parkirView.setHParkir("");
+                
+                
                 }catch(Exception error){
                     JOptionPane.showMessageDialog(null, error.getMessage());
                 }
@@ -136,7 +144,7 @@ public class ControllerParkir {
             public void actionPerformed(ActionEvent ae){
                 parkirView.setPNomor("");
                 /*parkirView.setJbarang("");*/
-                //parkirView.setjenisKen("");
+                //parkirView.setJenisKend("");
                 parkirView.setHParkir("");
             }
         });
@@ -162,7 +170,7 @@ public class ControllerParkir {
                     dataTerpilih = null;
                     parkirView.setPNomor("");
                     /*parkirView.setJbarang("");*/
-                    parkirView.setjenisKen("");
+                    //parkirView.setJenisKend("");
                     parkirView.setHParkir("");
                 }else{
                     JOptionPane.showMessageDialog(null, "Tidak Jadi Keluar");
@@ -172,7 +180,19 @@ public class ControllerParkir {
             }
             }
         });
+        
+        
+          parkirView.JenisKend.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent ae){
+                cb = (JComboBox)ae.getSource();
+                jenisKendaraan = (String)cb.getSelectedItem();
+                //updateLabel(petName);
+            }
+       });      
+
     }
-    
+ 
     
 }
+

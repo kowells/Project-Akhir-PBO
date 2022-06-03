@@ -76,7 +76,6 @@ public class ControllerParkir {
                
                 
                 String plat = parkirView.getPlatNomor();
-                /*int jumlah = Integer.parseInt(parkirView.getJumlahBarang());*/
                 String jenis = parkirView.getJenis();
                 String harga = parkirView.getHargaParkir();
                 modelParkir.insertData(plat, jenisKendaraan , harga);
@@ -84,8 +83,6 @@ public class ControllerParkir {
                 parkirView.tabel.setModel((new JTable(dataParkir, parkirView.namaKolom)).getModel());
                 parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
                 parkirView.setPNomor("");
-                /*parkirView.setJbarang("");*/
-                //parkirView.setJenisKend("");
                 parkirView.setHParkir("");
             }catch(Exception error){
                 JOptionPane.showMessageDialog(null, error.getMessage());
@@ -106,9 +103,7 @@ public class ControllerParkir {
                 if(parkirView.getPlatNomor().isBlank()){ 
                     throw new IllegalArgumentException("Plat Nomor belum terisi");
                 }
-                /*if(parkirView.getJumlahBarang().isBlank()){
-                     throw new IllegalArgumentException("Jumlah Barang belum terisi");
-                }*/
+                
                 if(parkirView.getJenis().isBlank()){
                     
                      throw new IllegalArgumentException("Jenis Kendaraan belum terisi");
@@ -118,8 +113,6 @@ public class ControllerParkir {
                 }
                 
                     String plat = parkirView.getPlatNomor();
-                    /*int jumlah = Integer.parseInt(parkirView.getJumlahBarang());*/
-                    //String jenis = parkirView.getJenisKendaraan();
                     String harga = parkirView.getHargaParkir();
                     modelParkir.updateData(id, plat, jenisKendaraan , harga);
                     String dataParkir[][] = modelParkir.readData();
@@ -127,8 +120,6 @@ public class ControllerParkir {
                     parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
                     dataTerpilih = null;
                     parkirView.setPNomor("");
-                    /*parkirView.setJbarang("");*/
-                    //parkirView.setJenisKend("");
                     parkirView.setHParkir("");
                 
                 
@@ -143,8 +134,7 @@ public class ControllerParkir {
             @Override
             public void actionPerformed(ActionEvent ae){
                 parkirView.setPNomor("");
-                /*parkirView.setJbarang("");*/
-                //parkirView.setJenisKend("");
+                parkirView.setJenis(null);
                 parkirView.setHParkir("");
             }
         });
@@ -169,8 +159,6 @@ public class ControllerParkir {
                     parkirView.tabel.removeColumn(parkirView.tabel.getColumnModel().getColumn(5));
                     dataTerpilih = null;
                     parkirView.setPNomor("");
-                    /*parkirView.setJbarang("");*/
-                    //parkirView.setJenisKend("");
                     parkirView.setHParkir("");
                 }else{
                     JOptionPane.showMessageDialog(null, "Tidak Jadi Keluar");

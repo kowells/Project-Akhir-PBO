@@ -25,7 +25,7 @@ public class ViewParkir extends JFrame {
 
     private JTextField PNomor;
     private JTextField Jbarang;
-    String[] kendaraan = {"motor", "mobil","pesawat"};
+    String[] kendaraan = {null,"Motor","Mobil","Bus","Truk"};
     public JComboBox JenisKend = new JComboBox(kendaraan);
     private JTextField HParkir;
     public JTable tabel;
@@ -100,16 +100,7 @@ public class ViewParkir extends JFrame {
         bg.add(PNomor);
         PNomor.setColumns(10);
 
-        /*JLabel labeljumlahbarang = new JLabel("Jumlah Barang");
-        labeljumlahbarang.setForeground(Color.BLACK);
-        labeljumlahbarang.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        labeljumlahbarang.setBounds(970, 196, 94, 17);
-        bg.add(labeljumlahbarang);
-
-        Jbarang = new JTextField();
-        Jbarang.setColumns(10);
-        Jbarang.setBounds(970, 223, 143, 25);
-        bg.add(Jbarang);*/
+        
 
         JLabel labeljeniskendaraan = new JLabel("Jenis Kendaraan");
         labeljeniskendaraan.setForeground(Color.BLACK);
@@ -117,10 +108,6 @@ public class ViewParkir extends JFrame {
         labeljeniskendaraan.setBounds(970, 196, 150, 17);
         bg.add(labeljeniskendaraan);
 
-       /* JenisKend = new JTextField();
-        JenisKend.setColumns(10);
-        JenisKend.setBounds(970, 223, 143, 25);
-        bg.add(JenisKend); */
        
        //combobox
         JenisKend.setBounds(970, 223, 143, 25);
@@ -214,14 +201,7 @@ public class ViewParkir extends JFrame {
         return PNomor.getText();
     }
 
-    /*public String getJumlahBarang() {
-        return Jbarang.getText();
-    }*/
-
-//    public String getJenisKendaraan() {
-//        return JenisKend.getText();
-//    }
-
+    
     public String getHargaParkir() {
         return HParkir.getText();
     }
@@ -230,13 +210,7 @@ public class ViewParkir extends JFrame {
         this.PNomor.setText(string);
     }
 
-    /*public void setJbarang(String string) {
-        this.Jbarang.setText(string);
-    }*/
-
-//    public void setJenisKend(String string) {
-//        this.JenisKend.setText(string);
-//    }
+    
 
     public void setHParkir(String string) {
         this.HParkir.setText(string);
